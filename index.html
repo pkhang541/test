@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRoyal Ride</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2b2f3a;
+            color: #ffffff;
+        }
+        header {
+            background-color: #121417;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #181a1f;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+        }
+        .products {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .product {
+            background-color: #3c3f4e;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+        .product img {
+            width: 280px;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .product h3 {
+            margin: 15px 0 10px;
+            font-size: 20px;
+        }
+        .product p {
+            margin: 10px 0;
+        }
+        .button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            text-align: center;
+        }
+        .details {
+            display: none;
+            background-color: #242632;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .details h3 {
+            margin: 0 0 10px;
+        }
+        .details p {
+            margin: 5px 0;
+        }
+    </style>
+    <script>
+        function showDetails(carName, carPrice, carDescription) {
+            const detailsDiv = document.getElementById('details');
+            detailsDiv.innerHTML = `
+                <h3>${carName}</h3>
+                <p>Giá: ${carPrice}</p>
+                <p>${carDescription}</p>
+            `;
+            detailsDiv.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>SRoyal Ride</h1>
+    </header>
+    <nav>
+        <a href="#">Trang chủ</a>
+        <a href="#">Sản phẩm</a>
+        <a href="#">Liên hệ</a>
+        <a href="#">Về chúng tôi</a>
+        <a href="#">Đăng nhập</a>
+    </nav>
+    <div class="container">
+        <h2>Một số Mẫu Xe Hot Nhất Hiện Nay</h2>
+        <div class="products">
+            <div class="product">
+                <img src="https://thegioirollsroyce.com/wp-content/uploads/2021/11/rolls-royce-phantom-vii-7.jpg" alt="Rolls-Royce Phantom VIII">
+                <h3>Rolls-Royce Phantom VIII</h3>
+                <p>50,000,000,000 VNĐ</p>
+                <button class="button" onclick="showDetails('Rolls-Royce Phantom VIII', '50,000,000,000 VNĐ', 'Một chiếc xe sang trọng bậc nhất với thiết kế đỉnh cao.')">Xem chi tiết</button>
+            </div>
+            <div class="product">
+                <img src="https://i.ytimg.com/vi/ZPik7WhXuVo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLByusPb-ifALNxwWFL1Kis-VP2TFA" alt="Bentley Flying Spur">
+                <h3>Bentley Flying Spur</h3>
+                <p>15,000,000,000 VNĐ</p>
+                <button class="button" onclick="showDetails('Bentley Flying Spur', '15,000,000,000 VNĐ', 'Một mẫu sedan thể thao, mạnh mẽ và hiện đại.')">Xem chi tiết</button>
+            </div>
+            <div class="product">
+                <img src="https://icdn.24h.com.vn/upload/2-2022/images/2022-04-13/av-1649849468-846-width640height480_schema_article.jpg" alt="Ferrari Roma">
+                <h3>Ferrari Roma</h3>
+                <p>20,000,000,000 VNĐ</p>
+                <button class="button" onclick="showDetails('Ferrari Roma', '20,000,000,000 VNĐ', 'Thiết kế thể thao, mạnh mẽ và phong cách.')">Xem chi tiết</button>
+            </div>
+        </div>
+        <div id="details" class="details"></div>
+    </div>
+</body>
+</html>
