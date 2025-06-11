@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadline Loading</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            position: relative;
+            width: 80%;
+            margin: 50px auto;
+        }
+        .progress-bar {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: red;
+            transition: width 1s linear;
+        }
+        .grim-reaper {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            transition: left 1s linear;
+        }
+        .worker {
+            position: absolute;
+            right: 0;
+            top: -20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Deadline Loading</h1>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcAGbAWTBNyJDxnvbn-na0gO0Hx9ODEBpUA&s" class="grim-reaper" id="grimReaper" width="50px">
+        <img src="worker.png" class="worker" width="50px">
+    </div>
+    <script>
+        let progress = document.getElementById('progress');
+        let grimReaper = document.getElementById('grimReaper');
+        let width = 0;
+        function updateProgress() {
+            if (width >= 100) {
+                clearInterval(interval);
+            } else {
+                width += 10;
+                progress.style.width = width + '%';
+                grimReaper.style.left = width + '%';
+            }
+        }
+        let interval = setInterval(updateProgress, 1000);
+    </script>
+</body>
+</html>

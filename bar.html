@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            width: 320px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fd0000, rgb(255, 9, 206), aqua);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .input-group {
+            position: relative;
+            width: 100%;
+            
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+            font-size: 18px;
+        }
+        .login-container button {
+            width: 150px; /* Nút dài và nhỏ */
+            height: 35px;
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: left 0.2s ease-in-out, top 0.2s ease-in-out;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+        .login-container button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .links {
+            margin-top: 10px;
+        }
+        .links a {
+            color: #ff3366;
+            text-decoration: none;
+            margin: 5px;
+            display: block;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Đăng nhập</h2>
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Tên đăng nhập" oninput="validateInput()">
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Mật khẩu" oninput="validateInput()">
+            <span class="toggle-password" onclick="togglePassword()">👁</span>
+        </div>
+        <button id="login-btn" disabled onmouseover="moveButton()">Đăng nhập</button>
+        <div class="links">
+            <a href="#">Quên mật khẩu?</a>
+            <a href="#">Đăng ký tài khoản</a>
+        </div>
+    </div>
+
+    <script>
+        let isMoving = false; // Trạng thái của nút
+
+        function togglePassword() {
+            let passwordInput = document.getElementById("password");
+            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+        }
+
+        function validateInput() {
+            let username = document.getElementById("username").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let loginBtn = document.getElementById("login-btn");
+
+            if (username !== "" && password !== "") {
+                loginBtn.disabled = false;
+                resetButtonPosition();
+            } else {
+                loginBtn.disabled = true;
+            }
+        }
+
+        function moveButton() {
+            let username = document.getElementById("username").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let loginBtn = document.getElementById("login-btn");
+
+            if ((username === "" || password === "") && !isMoving) {
+                isMoving = true;
+                let maxX = window.innerWidth - loginBtn.offsetWidth;
+                let maxY = window.innerHeight - loginBtn.offsetHeight;
+
+                let randomX = Math.floor(Math.random() * maxX);
+                let randomY = Math.floor(Math.random() * maxY);
+
+                loginBtn.style.position = "fixed";
+                loginBtn.style.width = "150px"; // Giữ nguyên kích thước
+                loginBtn.style.height = "35px";
+                loginBtn.style.left = randomX + "px";
+                loginBtn.style.top = randomY + "px";
+
+                setTimeout(() => {
+                    isMoving = false; // Cho phép di chuyển lần tiếp theo
+                }, 500); // Đợi 0.5 giây mới cho di chuyển lần nữa
+            }
+        }
+
+        function resetButtonPosition() {
+            let loginBtn = document.getElementById("login-btn");
+
+            loginBtn.style.position = "relative";
+            loginBtn.style.left = "0";
+            loginBtn.style.top = "0";
+        }
+    </script>
+</body>
+</html>
+<!-- <?php
+$error = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    // Thông tin đăng nhập mẫu (có thể thay bằng database)
+    $valid_username = "admin";
+    $valid_password = "123456";
+
+    if ($username === $valid_username && $password === $valid_password) {
+        echo "<script>alert('Đăng nhập thành công!');</script>";
+    } else {
+        $error = "Sai tên đăng nhập hoặc mật khẩu!";
+    }
+}
+?> -->

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trái Tim Ánh Lửa</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      color: #ffffff;
+    }
+    #canvas {
+      display: block;
+      position: absolute;
+    }
+    /* Hiệu ứng chữ xuất hiện sau khi trái tim hình thành */
+    #text {
+      font-family: Arial, sans-serif;
+
+      font-size: 48px;
+      opacity: 0;
+      animation: fadeIn 2s forwards 2s; /* Chỉnh lại thời gian */
+      z-index: 10;
+    }
+    /* Hiệu ứng fade-in cho chữ */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    /* Thêm hiệu ứng hình chữ nhật với màu nền */
+    #rectangle {
+      width: 200px;
+      height: 100px;
+      background-color: rgba(255, 0, 255, 0.7);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: #fff;
+      opacity: 0;
+      animation: fadeIn 2s forwards 2s; /* Chỉnh lại thời gian */
+    }
+    /* CSS cho hình ảnh */
+    #image {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      opacity: 0;
+      z-index: 20;
+      animation: fadeInImage 3s forwards 2s; /* Chỉnh lại thời gian */
+    }
+    @keyframes fadeInImage {
+      to { opacity: 1; }
+    }
+    /* Hiệu ứng chữ "Anh yêu em" */
+    #finalText {
+      font-family: Arial, sans-serif;
+      font-size: 36px;
+      color: #ff2cdc;
+      opacity: 0;
+      animation: fadeInText 2s forwards 2s; /* Chỉnh lại thời gian */
+      margin-top: 20px;
+    }
+    @keyframes fadeInText {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div style="color: rgb(236, 84, 190) ;" id="text">Anh yêu Em</div>
+  <div id="rectangle">Hình chữ</div>
+  <!-- Thêm hình ảnh -->
+  <img id="image" src="" alt="Ảnh yêu thương">
+  <div id="finalText">Anh yêu em</div>
+  <canvas id="canvas"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    
+    // Hàm tính tọa độ trên đường cong trái tim (theo công thức tham số)
+    function heart(t) {
+      const x = 16 * Math.pow(Math.sin(t), 3);
+      const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+      return { x, y };
+    }
+    
+    // Chuyển tọa độ từ hệ trái tim sang tọa độ canvas
+    function convert(p) {
+      const scale = 20; // tỉ lệ phóng to
+      return {
+        x: width / 2 + p.x * scale,
+        y: height / 2 - p.y * scale
+      };
+    }
+    
+    // Định nghĩa lớp Particle (hạt tia lửa)
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = Math.random() * 2 + 1;
+        this.alpha = 1;
+      }
+      update() {
+        // Giảm dần độ mờ để tạo hiệu ứng tan dần
+        this.alpha -= 0.005; // Làm cho hạt tan chậm hơn
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = '#FF00FF';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+    
+    let particles = [];
+    let t = 0;
+    
+    function animate() {
+      // Vẽ nền đen với hiệu ứng mờ dần để tạo vệt tia lửa
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Từng bước thêm hạt mới theo đường cong trái tim
+      if (t < Math.PI * 2) {
+        const p = heart(t);
+        const pos = convert(p);
+        particles.push(new Particle(pos.x, pos.y));
+        t += 0.05; // Giảm bước tăng của t để các hạt xuất hiện chậm hơn
+      }
+      
+      // Cập nhật và vẽ từng hạt
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const particle = particles[i];
+        particle.update();
+        particle.draw();
+        if (particle.alpha <= 0) {
+          particles.splice(i, 1);
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    animate();
+    
+    // Cập nhật kích thước canvas khi thay đổi kích thước cửa sổ
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Thay đổi nền thành màu hồng khi tất cả các yếu tố đã xuất hiện
+    setTimeout(() => {
+      document.body.style.backgroundColor = "#ff66b2"; // Nền hồng
+    }, 2000); // Thay đổi ngay sau khi các yếu tố xuất hiện
+  </script>
+</body>
+</html>

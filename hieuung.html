@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation Demo</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .animation-box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 20px auto;
+            border-radius: 10px;
+
+            /* Áp dụng animation */
+            animation-name: colorChange;
+            animation-duration: 3s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-fill-mode: forwards;
+        }
+
+        /* Định nghĩa animation */
+        @keyframes colorChange {
+            from {
+                background-color: rgb(140, 89, 244);
+                transform: translateX(0);
+            }
+            to {
+                background-color: rgb(225, 89, 150);
+                transform: translateX(200px);
+            }
+        }
+
+        /* CSS cho các nút */
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        #start {
+            background-color: green;
+            color: white;
+        }
+
+        #pause {
+            background-color: orange;
+            color: white;
+        }
+
+        #resume {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo CSS Animation</h1>
+    <div class="animation-box"></div>
+
+    <div class="controls">
+        <button id="start">Bắt đầu</button>
+        <button id="pause">Tạm dừng</button>
+        <button id="resume">Tiếp tục</button>
+    </div>
+
+    <script>
+        const box = document.querySelector(".animation-box");
+        const startBtn = document.getElementById("start");
+        const pauseBtn = document.getElementById("pause");
+        const resumeBtn = document.getElementById("resume");
+
+        // Khi nhấn nút "Bắt đầu"
+        startBtn.addEventListener("click", function () {
+            box.style.animationPlayState = "running";
+        });
+
+        // Khi nhấn nút "Tạm dừng"
+        pauseBtn.addEventListener("click", function () {
+            box.style.animationPlayState = "paused";
+        });
+
+        // Khi nhấn nút "Tiếp tục"
+        resumeBtn.addEventListener("click", function () {
+            box.style.animationPlayState = "running";
+        });
+    </script>
+</body>
+</html>
