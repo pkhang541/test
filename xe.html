@@ -14,11 +14,22 @@
         header {
             background-color: #121417;
             padding: 20px;
-            text-align: center;
         }
-        header h1 {
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .logo img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+        }
+        .logo h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 30px;
+            color: #ffffff;
         }
         nav {
             display: flex;
@@ -107,14 +118,19 @@
 </head>
 <body>
     <header>
-        <h1>SRoyal Ride</h1>
+        <div class="logo">
+            <a href="xe.html">
+                <img src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-04e8-61f8-8522-3b4ef355f683/raw?se=2025-06-23T05%3A04%3A26Z&sp=r&sv=2024-08-04&sr=b&scid=6a19e47e-89cd-5fa4-8c25-8559edf028cd&skoid=0da8417a-a4c3-4a19-9b05-b82cee9d8868&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-22T15%3A26%3A07Z&ske=2025-06-23T15%3A26%3A07Z&sks=b&skv=2024-08-04&sig=mF%2BIggde8kjO7IJXn7VxkpZwtzqZRh2NsQIXksV2ce4%3D" alt="Logo Showroom">
+            </a>
+            <h1>SRoyal Ride</h1>
+        </div>
     </header>
     <nav>
-        <a href="#">Trang chủ</a>
+        <a href="xe.html">Trang chủ</a>
         <a href="#">Sản phẩm</a>
-        <a href="#">Liên hệ</a>
-        <a href="#">Về chúng tôi</a>
-        <a href="#">Đăng nhập</a>
+        <a href="#">Bán Xe</a>
+        <a href="lienhe.html">Liên hệ</a>
+        <a href="LOGIN.html">Đăng nhập</a>
     </nav>
     <div class="container">
         <h2>Một số Mẫu Xe Hot Nhất Hiện Nay</h2>

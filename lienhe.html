@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SRoyal Ride</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #020203;
+      color: #fff;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: #121417;
+    }
+
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .left-section h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+    }
+
+    .right-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background-color: #2b2f3a;
+      border-radius: 8px;
+      padding: 5px 10px;
+    }
+
+    .search-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 16px;
+      padding: 5px;
+    }
+
+    .search-box button {
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      padding: 7px 12px;
+      margin-left: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .search-box button:hover {
+      background-color: #0056b3;
+    }
+
+    .icon-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .icon-group img {
+      width: 30px;
+      height: 30px;
+      filter: brightness(0) invert(1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .icon-group img:hover {
+      transform: scale(1.1);
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background-color: #2b2f3a;
+      border-radius: 5px;
+      padding: 10px;
+      min-width: 180px;
+      display: none;
+      z-index: 10;
+    }
+
+    .dropdown a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 0;
+    }
+
+    .dropdown a:hover {
+      text-decoration: underline;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .support-section {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #121417;
+      color: #fff;
+    }
+
+    .support-section h2 {
+      font-size: 32px;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+
+    .support-cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: #1e1f23;
+      padding: 30px 20px;
+      border-radius: 12px;
+      width: 280px;
+      text-align: center;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: #2b2f3a;
+    }
+
+    .card img {
+      width: 40px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+
+    .card h3 {
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #ccc;
+    }
+   .banner-img{
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    
+   }
+   
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="left-section">
+      <div class="logo">
+        <a href="xe.html">
+          <img src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-04e8-61f8-8522-3b4ef355f683/raw?se=2025-06-23T14%3A04%3A47Z&sp=r&sv=2024-08-04&sr=b&scid=e989c7de-d94e-506e-b984-dfb61f1ef8c2&skoid=9ccea605-1409-4478-82eb-9c83b25dc1b0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-22T16%3A37%3A30Z&ske=2025-06-23T16%3A37%3A30Z&sks=b&skv=2024-08-04&sig=DYbxDTsde5UVwG3AciiLeS%2BHb1qWD1qTkZmxRd1ATeg%3D" alt="Logo Showroom">
+        </a>
+      </div>
+      <h1>SRoyal Ride</h1>
+    </div>
+
+    <div class="right-section">
+      <div class="search-box">
+        <input type="text" placeholder="Tìm xe...">
+        <button>Tìm</button>
+      </div>
+
+      <div class="icon-group">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Phone" id="phoneIcon">
+        <div class="dropdown" id="phoneDropdown">
+          <a href="tel:0123456789">📞 Gọi: 0123 456 789</a>
+        </div>
+
+        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Map" id="mapIcon">
+        <div class="dropdown" id="mapDropdown">
+          <a href="https://www.google.com/maps/place/123+Nguy%E1%BB%85n+Hu%E1%BB%87,+TT.+C%C3%A1i+T%C3%A0u+H%E1%BA%A1,+Ch%C3%A2u+Th%C3%A0nh,+%C4%90%E1%BB%93ng+Th%C3%A1p,+Vi%E1%BB%87t+Nam/@10.2628839,105.8690566,17z/data=!3m1!4b1!4m9!1m2!2m1!1zMTIzIG5ndXnhu4VuIGh14buH!3m5!1s0x310a8180d2065569:0xbacd36dd1222a35d!8m2!3d10.2628839!4d105.8739275!15sChIxMjMgbmd1eeG7hW4gaHXhu4eSARBnZW9jb2RlZF9hZGRyZXNz4AEA?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">📍 Xem Google Maps</a>
+          <a href="#">Địa chỉ: 123 Nguyễn Huệ, Q1</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div >
+    <img src="https://thuthuat.vip/wp-content/uploads/2021/04/lamborghini-62.jpg" alt="" class="banner-img">
+  </div>
+
+  <div class="support-section">
+    <h2>Hỗ trợ từ chúng tôi</h2>
+    <div class="support-cards">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" alt="FAQ" />
+        <h3>Câu hỏi thường gặp</h3>
+        <p>Câu hỏi thường gặp dành cho khách hàng cá nhân</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" />
+        <h3>Email cho chúng tôi</h3>
+        <p>Hãy gửi email cho chúng tôi để nhận phản hồi & tư vấn thắc mắc.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Contact" />
+        <h3>Hướng dẫn liên hệ</h3>
+        <p>Thông tin liên hệ của Trung tâm Chăm sóc khách hàng</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const phoneIcon = document.getElementById("phoneIcon");
+    const phoneDropdown = document.getElementById("phoneDropdown");
+    const mapIcon = document.getElementById("mapIcon");
+    const mapDropdown = document.getElementById("mapDropdown");
+
+    phoneIcon.addEventListener("click", () => {
+      phoneDropdown.style.display = phoneDropdown.style.display === "block" ? "none" : "block";
+      mapDropdown.style.display = "none";
+    });
+
+    mapIcon.addEventListener("click", () => {
+      mapDropdown.style.display = mapDropdown.style.display === "block" ? "none" : "block";
+      phoneDropdown.style.display = "none";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".icon-group")) {
+        phoneDropdown.style.display = "none";
+        mapDropdown.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
